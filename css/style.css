@@ -1,0 +1,21 @@
+body {
+  background-color: #3e3f3a;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.container {
+  color: #fff;
+}
+
+.question {
+  margin-bottom: 50px;
+}
+
+footer {
+  margin-top: 15px;
+}
+
+footer a {
+  color: #fff;
+}
