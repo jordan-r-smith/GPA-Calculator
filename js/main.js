@@ -2,8 +2,6 @@ $(function() {
 
   var gpaView = {
     init: function() {
-      console.log('View Retrieved GPA: ' + localStorage.gpa);
-
       this.questionText = $('.question');
       this.inputDump = $('#input-dump');
       this.gpaNextButton = $('#nextButton');
@@ -22,8 +20,6 @@ $(function() {
 
   var creditHoursView = {
     init: function() {
-      console.log('View Retrieved Credit Hours: ' + localStorage.creditHours);
-
       this.questionText = $('.question');
       this.inputDump = $('#input-dump');
       this.creditHoursNextButton = $('#nextButton');
@@ -43,18 +39,13 @@ $(function() {
 
   var coursesView = {
     init: function() {
-      console.log('View Retrieved Courses:');
-      console.log(JSON.parse(localStorage.courses));
-
       this.questionText = $('.question');
       $('#input-dump').html('');
       this.inputDump = document.getElementById('input-dump');
 
       for (var i = 0; i < course.getCourses().length; i++) {
         var singleCourse = course.getCourses()[i];
-        console.log(singleCourse);
         this.addCourse(singleCourse);
-        console.log('Course Added');
       }
 
       this.addCourseButton = $('#addCourse');
@@ -83,8 +74,6 @@ $(function() {
         var courseCreditHours = singleCourse.creditHours;
         var courseGrade = singleCourse.grade;
       }
-
-      console.log(courseID);
 
       var form = document.createElement('form');
       form.setAttribute('class', 'form-horizontal');
@@ -184,7 +173,6 @@ $(function() {
       gpaView.init();
     },
     submit: function() {
-      console.log('Retrieved GPA: ' + localStorage.gpa);
       gpa.currentGPA = gpaView.answerInput.val();
       gpa.save();
       console.log('Saved GPA: ' + localStorage.gpa);
@@ -198,7 +186,6 @@ $(function() {
       creditHoursView.init();
     },
     submit: function() {
-      console.log('Retrieved Credit Hours: ' + localStorage.creditHours);
       creditHour.currentCreditHours = creditHoursView.answerInput.val();
       creditHour.save();
       console.log('Saved Credit Hours: ' + localStorage.creditHours);
@@ -212,17 +199,12 @@ $(function() {
       coursesView.init();
     },
     submit: function() {
-      console.log('Retrieved Courses:');
-      console.log(JSON.parse(localStorage.courses));
-
       var coursesArray = [];
       var courseRows = document.getElementsByClassName('form-horizontal');
       for (var i = 0; i < courseRows.length; i++) {
         var currentCourseID = courseRows[i].id
         var currentCreditHour = courseRows[i].elements[0].value;
         var currentGrade = courseRows[i].elements[1].value;
-
-        console.log('ID: ' + currentCourseID + ' / Credit Hour: ' + currentCreditHour + ' / Grade: ' + currentGrade);
 
         var courseEntry = {
           id: currentCourseID,
@@ -234,7 +216,6 @@ $(function() {
       }
 
       course.currentCourses = JSON.stringify(coursesArray);
-      console.log(course.currentCourses);
       course.save();
       console.log('Saved Courses:');
       console.log(JSON.parse(localStorage.courses));
